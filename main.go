@@ -62,7 +62,9 @@ func main() {
 
 	// Remove the trail
 	trailIdx := slices.IndexFunc(kmlFile.Document.Folders, func(f folder) bool { return f.Name == "Trail" })
-	kmlFile.Document.Folders = slices.Delete(kmlFile.Document.Folders, trailIdx, trailIdx+1)
+	if trailIdx != -1 {
+		kmlFile.Document.Folders = slices.Delete(kmlFile.Document.Folders, trailIdx, trailIdx+1)
+	}
 
 	// If a timestamp to split is specified, we handle it here
 	if argLength == 2 {
